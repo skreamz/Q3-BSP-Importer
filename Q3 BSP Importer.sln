@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.unity.shadergraph.Editor", "com.unity.shadergraph.Editor.csproj", "{D96C2258-4FCA-B87A-9AD2-8E7768562927}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.PackageManagerUI.Editor", "Unity.PackageManagerUI.Editor.csproj", "{6877705C-FBD9-0C4F-5AFB-6FB431E5D39D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Q3 BSP Importer.Editor", "Q3 BSP Importer.Editor.csproj", "{A85BC12C-6E2F-1946-39AE-4AE2C6D5A19E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D96C2258-4FCA-B87A-9AD2-8E7768562927}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D96C2258-4FCA-B87A-9AD2-8E7768562927}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D96C2258-4FCA-B87A-9AD2-8E7768562927}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D96C2258-4FCA-B87A-9AD2-8E7768562927}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6877705C-FBD9-0C4F-5AFB-6FB431E5D39D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6877705C-FBD9-0C4F-5AFB-6FB431E5D39D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6877705C-FBD9-0C4F-5AFB-6FB431E5D39D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6877705C-FBD9-0C4F-5AFB-6FB431E5D39D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A85BC12C-6E2F-1946-39AE-4AE2C6D5A19E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A85BC12C-6E2F-1946-39AE-4AE2C6D5A19E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A85BC12C-6E2F-1946-39AE-4AE2C6D5A19E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A85BC12C-6E2F-1946-39AE-4AE2C6D5A19E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
