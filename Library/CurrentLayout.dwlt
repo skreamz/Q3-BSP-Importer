@@ -423,7 +423,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 492}
   m_MaxSize: {x: 14004, y: 14042}
   vertical: 0
-  controlID: 11
+  controlID: 50
 --- !u!114 &21
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -448,7 +448,7 @@ MonoBehaviour:
   m_Panes:
   - {fileID: 30}
   m_Selected: 0
-  m_LastSelected: 1
+  m_LastSelected: 0
 --- !u!114 &22
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -588,7 +588,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 12
+  controlID: 51
 --- !u!114 &28
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -612,7 +612,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 221}
   m_MaxSize: {x: 8006, y: 4021}
   vertical: 0
-  controlID: 13
+  controlID: 52
 --- !u!114 &29
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -639,7 +639,7 @@ MonoBehaviour:
   - {fileID: 34}
   - {fileID: 37}
   m_Selected: 0
-  m_LastSelected: 0
+  m_LastSelected: 1
 --- !u!114 &30
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -725,18 +725,18 @@ MonoBehaviour:
     height: 1011
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 0
-  lastFramingTime: 13954.96017703485
+  lastFramingTime: 6159.288984151327
   m_2DMode: 0
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -67.845276, y: 500.6232, z: -1059.6869}
+    m_Target: {x: 748.0565, y: -0.46543884, z: 20.587708}
     speed: 2
-    m_Value: {x: -67.845276, y: 500.6232, z: -1059.6869}
-  m_RenderMode: 0
+    m_Value: {x: 748.0565, y: -0.46543884, z: 20.587708}
+  m_RenderMode: 1
   m_CameraMode:
-    drawMode: 0
-    name: Shaded
+    drawMode: 1
+    name: Wireframe
     section: Shading Mode
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -760,13 +760,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: 0.15688138, y: 0.25635165, z: 0.042207226, w: -0.952833}
+    m_Target: {x: 0.13364567, y: 0.13510232, z: -0.01839421, w: 0.9816047}
     speed: 2
-    m_Value: {x: 0.15688138, y: 0.25635165, z: 0.042207226, w: -0.952833}
+    m_Value: {x: -0.13364567, y: -0.13510232, z: 0.01839421, w: -0.9816047}
   m_Size:
-    m_Target: 1366.5884
+    m_Target: 803.2141
     speed: 2
-    m_Value: 1366.5884
+    m_Value: 803.2141
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -807,7 +807,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: dcf9ffff00000000
+    m_ExpandedIDs: e4f9ffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1229,10 +1229,6 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/map-plduel1
-  - Assets/map-plduel2
-  - Assets/map-plduel3
-  - Assets/map-plduel4
   - Assets/pak0
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\skrea\Documents\Q3 BSP Importer
@@ -1240,9 +1236,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: c6330000
-    m_LastClickedID: 13254
-    m_ExpandedIDs: 00000000c6330000e6380000e23e00009a3f000032400000ee5000006c540000f0540000ffffff7f
+    m_SelectedIDs: bc320000
+    m_LastClickedID: 12988
+    m_ExpandedIDs: 00000000bc320000c23e0000be4e00005e52000060520000625200006452000066520000685200006a5200006c5200006e5200007052000072520000745200007652000078520000ffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1270,7 +1266,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000c6330000e6380000e23e00009a3f000032400000ee5000006c540000f0540000
+    m_ExpandedIDs: 00000000bc320000c23e0000be4e00005e52000060520000625200006452000066520000685200006a5200006c5200006e5200007052000072520000745200007652000078520000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

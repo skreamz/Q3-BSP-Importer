@@ -270,9 +270,6 @@
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/ProgramData/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
     </Reference>
-    <Reference Include="Ionic.Zlib.CF">
-      <HintPath>Assets/SimpleZip/Plugins/Ionic.Zlib.CF.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2018.1.0b8\Editor\Data\PlaybackEngines\AppleTVSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
     </Reference>
@@ -311,6 +308,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Q3 BSP Importer.Plugins.csproj">
+      <Project>{42B7DC94-8C5C-E387-21F3-4B52024F6EFC}</Project>
+      <Name>Q3 BSP Importer.Plugins</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.PackageManagerUI.Editor.csproj">
       <Project>{6877705C-FBD9-0C4F-5AFB-6FB431E5D39D}</Project>
       <Name>Unity.PackageManagerUI.Editor</Name>
@@ -321,55 +322,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\SimpleZip\Example.cs" />
-    <Compile Include="Assets\SimpleZip\Zip.cs" />
+    <Compile Include="Assets\PoolManagerExampleFiles\Scripts\CreationExample.cs" />
+    <Compile Include="Assets\PoolManagerExampleFiles\Scripts\DeleteAndCreateInSameFrame.cs" />
+    <Compile Include="Assets\PoolManagerExampleFiles\Scripts\InstanceHandlerDelegateExample.cs" />
+    <Compile Include="Assets\PoolManagerExampleFiles\Scripts\OnCreatedDelegateExample.cs" />
+    <Compile Include="Assets\PoolManagerExampleFiles\Scripts\OnSpawnedExample.cs" />
+    <Compile Include="Assets\PoolManagerExampleFiles\Scripts\ParticleWaitTest.cs" />
+    <Compile Include="Assets\PoolManagerExampleFiles\Scripts\ReallySimpleAudioSpawner.cs" />
+    <Compile Include="Assets\PoolManagerExampleFiles\Scripts\ReallySimpleParticleSpawner.cs" />
+    <Compile Include="Assets\PoolManagerExampleFiles\Scripts\SimpleSpawner.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\SimpleZip\License.txt" />
-    <None Include="Assets\SimpleZip\Readme.txt" />
-    <None Include="Assets\map-plduel1\scripts\plduel1.shader" />
-    <None Include="Assets\map-plduel2\scripts\alchlamp3.shader" />
-    <None Include="Assets\map-plduel2\scripts\multiplant.shader" />
-    <None Include="Assets\map-plduel2\scripts\q3nem02.shader" />
-    <None Include="Assets\map-plduel2\scripts\skies-kothic.shader" />
-    <None Include="Assets\map-plduel3\scripts\hh3_lights.shader" />
-    <None Include="Assets\map-plduel3\scripts\plduel3.shader" />
-    <None Include="Assets\map-plduel3\scripts\q3hh2.shader" />
-    <None Include="Assets\map-plduel3\scripts\skies-kothic.shader" />
-    <None Include="Assets\map-plduel4\scripts\plduel4.shader" />
-    <None Include="Assets\map-plduel4\scripts\plduel4_fx.shader" />
-    <None Include="Assets\pak0\scripts\arenas.txt" />
-    <None Include="Assets\pak0\scripts\base.shader" />
-    <None Include="Assets\pak0\scripts\base_button.shader" />
-    <None Include="Assets\pak0\scripts\base_floor.shader" />
-    <None Include="Assets\pak0\scripts\base_light.shader" />
-    <None Include="Assets\pak0\scripts\base_object.shader" />
-    <None Include="Assets\pak0\scripts\base_support.shader" />
-    <None Include="Assets\pak0\scripts\base_trim.shader" />
-    <None Include="Assets\pak0\scripts\base_wall.shader" />
-    <None Include="Assets\pak0\scripts\bots.txt" />
-    <None Include="Assets\pak0\scripts\common.shader" />
-    <None Include="Assets\pak0\scripts\ctf.shader" />
-    <None Include="Assets\pak0\scripts\eerie.shader" />
-    <None Include="Assets\pak0\scripts\explode1.shader" />
-    <None Include="Assets\pak0\scripts\gfx.shader" />
-    <None Include="Assets\pak0\scripts\gothic_block.shader" />
-    <None Include="Assets\pak0\scripts\gothic_floor.shader" />
-    <None Include="Assets\pak0\scripts\gothic_light.shader" />
-    <None Include="Assets\pak0\scripts\gothic_trim.shader" />
-    <None Include="Assets\pak0\scripts\gothic_wall.shader" />
-    <None Include="Assets\pak0\scripts\hell.shader" />
-    <None Include="Assets\pak0\scripts\lightningnew.shader" />
-    <None Include="Assets\pak0\scripts\liquid.shader" />
-    <None Include="Assets\pak0\scripts\menu.shader" />
-    <None Include="Assets\pak0\scripts\models.shader" />
-    <None Include="Assets\pak0\scripts\organics.shader" />
-    <None Include="Assets\pak0\scripts\sfx.shader" />
-    <None Include="Assets\pak0\scripts\shrine.shader" />
-    <None Include="Assets\pak0\scripts\skin.shader" />
-    <None Include="Assets\pak0\scripts\sky.shader" />
-    <None Include="Assets\pak0\scripts\test.shader" />
-    <None Include="Assets\pak0\scripts\tim.shader" />
+    <None Include="Assets\Plugins\PathologicalGames\readme.txt" />
     <None Include="C:\ProgramData\Unity\cache\packages\packages.unity.com\com.unity.package-manager-ui@1.7.2\Editor\Resources\Styles\Main_Dark.uss" />
     <None Include="C:\ProgramData\Unity\cache\packages\packages.unity.com\com.unity.package-manager-ui@1.7.2\Editor\Resources\Styles\Main_Light.uss" />
     <None Include="C:\ProgramData\Unity\cache\packages\packages.unity.com\com.unity.package-manager-ui@1.7.2\Editor\Resources\Templates\Alert.uxml" />

@@ -7,10 +7,9 @@ using System;
 
 namespace SkreamingSoftware
 {
-
     public class Q3BSPImporter : EditorWindow
     {
-        [MenuItem("Plugins/Skreaming Software/Import Q3 BSP")]
+        [MenuItem("Window/Skreaming Software/Import Q3 BSP")]
         public static void Import()
         {
             GetWindow<Q3BSPImporter>("Q3 BSP Importer");
@@ -23,20 +22,64 @@ namespace SkreamingSoftware
         private string dirpath = null;
 
         private bool importtextures = true;
-        private bool importlightmaps = false;
+        private bool importlightmaps = true;
         private bool addcolliders = true;
         private bool usereplacmenttex = false;
-        private bool makestatic = false;
+        private bool makestatic = true;
         private int tezlevel = 5;
         private Texture2D replacementtexture = null;
-        private Material pmat = null;
+        private PhysicMaterial pmat = null;
+        private Shader nonlightmapshader = null;
+        private Shader lightmapshader = null;
+        private bool printentitylump = false;
+
+        private Texture edtex = null;
+        private Vector2 scrollPosition = new Vector2();
+
+        void OnEnable()
+        {
+            if(lightmapshader == null)
+                lightmapshader = Shader.Find("Legacy Shaders/Lightmapped/Diffuse");
+
+            if(nonlightmapshader == null)
+                nonlightmapshader = Shader.Find("Diffuse");
+
+            if(edtex == null)
+            {
+                edtex = AssetDatabase.LoadAssetAtPath("Assets/Skreaming Software/Q3 BSP Importer/gfx/logo.png", typeof(Texture)) as Texture;
+
+                if(edtex == null)
+                    Debug.Log("edtex == null");
+            }
+        }
+
+        void MenuSelectionN(object shader)
+        {
+            nonlightmapshader = (Shader)shader;
+        }
+
+        void MenuSelectionL(object shader)
+        {
+            lightmapshader = (Shader)shader;
+        }
 
         void OnGUI()
         {
             files.Clear();
 
+            scrollPosition = GUILayout.BeginScrollView(scrollPosition);
+
+            if(edtex != null)
+            {
+                float bannerWidth = Screen.width - 10;
+                float bannerHeight = bannerWidth * (edtex.height / (float)edtex.width);
+
+                EditorGUILayout.LabelField(new GUIContent(edtex), GUILayout.Width(bannerWidth), GUILayout.Height(bannerHeight));
+
+                EditorGUILayout.Space();
+            }
+
             GUILayout.Label("Q3 BSP File Selection", EditorStyles.boldLabel);
-            //EditorGUILayout.ObjectField.
 
             EditorGUILayout.Space();
 
@@ -44,6 +87,9 @@ namespace SkreamingSoftware
             FileInfo[] fileinfos = directory.GetFiles("*" + ".bsp", SearchOption.AllDirectories);
 
             string[] names = new string[fileinfos.Length];
+
+            if(dirpath == null)
+                dirpath = Application.dataPath;
 
             int count = 0;
 
@@ -59,15 +105,10 @@ namespace SkreamingSoftware
 
                 if(i == selectedingrid)
                     dirpath = finfo.Directory.ToString();
-
-                //if(dirpath != null)
-                //Debug.Log(dirpath);
             }
 
             dirpath = dirpath.Replace("\\", "/");
             dirpath = dirpath.Replace(Application.dataPath, "Assets");
-            //Debug.Log(dirpath);
-            //Debug.Log(Application.dataPath);
 
             if(count != 0)
             {
@@ -90,36 +131,112 @@ namespace SkreamingSoftware
 
             EditorGUILayout.Space();
 
-            importtextures = GUILayout.Toggle(importtextures, "Import Textures");
+            importtextures = GUILayout.Toggle(importtextures, "Import Textures.");
 
-            EditorGUILayout.Space();
-
-            importlightmaps = GUILayout.Toggle(importlightmaps, "Import Lightmaps");
-
-            EditorGUILayout.Space();
-
-            addcolliders = GUILayout.Toggle(addcolliders, "Add Collider/s");
-
-            if(addcolliders)
+            if(importtextures)
             {
-                pmat = EditorGUILayout.ObjectField("Material", pmat, typeof(Material)) as Material;
+                GUILayout.BeginHorizontal();
 
+                nonlightmapshader = EditorGUILayout.ObjectField("Shader", nonlightmapshader, typeof(Shader), true) as Shader;
+
+                if(GUILayout.Button("List Internal Shaders."))
+                {
+                    GenericMenu menu = new GenericMenu();
+
+                    ShaderInfo[] infos = ShaderUtil.GetAllShaderInfo();
+
+                    foreach(ShaderInfo si in infos)
+                    {
+                        bool b = false;
+
+                        if(nonlightmapshader == null)
+                        {
+                            b = false;
+                        }
+                        else
+                        {
+                            if(nonlightmapshader.name == si.name)
+                                b = true;
+                        }
+
+                        menu.AddItem(new GUIContent(si.name), b, MenuSelectionN, Shader.Find(si.name));
+                    }
+
+                    // display the menu
+                    menu.ShowAsContext();
+
+                }
+
+                GUILayout.EndHorizontal();
             }
 
             EditorGUILayout.Space();
 
-            usereplacmenttex = GUILayout.Toggle(usereplacmenttex, "Use Replacement Texture for Non Found");
+            importlightmaps = GUILayout.Toggle(importlightmaps, "Import Lightmaps.");
 
-            if(usereplacmenttex)
-                replacementtexture = EditorGUILayout.ObjectField("Replacement Texture", replacementtexture, typeof(Texture2D)) as Texture2D;
+            if(importlightmaps)
+            {
+                GUILayout.BeginHorizontal();
+
+                lightmapshader = EditorGUILayout.ObjectField("Shader", lightmapshader, typeof(Shader), true) as Shader;
+
+                if(GUILayout.Button("List Internal Shaders."))
+                {
+                    GenericMenu menu = new GenericMenu();
+
+                    ShaderInfo[] infos = ShaderUtil.GetAllShaderInfo();
+
+                    foreach(ShaderInfo si in infos)
+                    {
+                        bool b = false;
+
+                        if(lightmapshader == null)
+                        {
+                            b = false;
+                        }
+                        else
+                        {
+                            if(lightmapshader.name == si.name)
+                                b = true;
+                        }
+
+                        menu.AddItem(new GUIContent(si.name), b, MenuSelectionL, Shader.Find(si.name));
+                    }
+
+                    // display the menu
+                    menu.ShowAsContext();
+                }
+
+                GUILayout.EndHorizontal();
+            }
 
             EditorGUILayout.Space();
 
-            makestatic = GUILayout.Toggle(makestatic, "Make objects static");
+            addcolliders = GUILayout.Toggle(addcolliders, "Add Collider/s.");
+
+            if(addcolliders)
+            {
+                pmat = EditorGUILayout.ObjectField("Material", pmat, typeof(PhysicMaterial), true) as PhysicMaterial;
+            }
+
+            EditorGUILayout.Space();
+
+            usereplacmenttex = GUILayout.Toggle(usereplacmenttex, "Use Replacement Texture for Non Found.");
+
+            if(usereplacmenttex)
+                replacementtexture = EditorGUILayout.ObjectField("Replacement Texture", replacementtexture, typeof(Texture2D), true) as Texture2D;
+
+            EditorGUILayout.Space();
+
+            makestatic = GUILayout.Toggle(makestatic, "Make objects static.");
 
             EditorGUILayout.Space();
 
             tezlevel = EditorGUILayout.IntSlider("Tesselation Level", tezlevel, 3, 50);
+
+            EditorGUILayout.Space();
+
+            printentitylump = GUILayout.Toggle(printentitylump, "Print the Entity List to console.");
 
             EditorGUILayout.Space();
             EditorGUILayout.Space();
@@ -129,6 +246,8 @@ namespace SkreamingSoftware
             {
                 ImportQ3BSP(files[selectedingrid].ToString());
             }
+
+            GUILayout.EndScrollView();
         }
 
         private struct Lump
@@ -245,7 +364,8 @@ namespace SkreamingSoftware
         {
             br.BaseStream.Position = lump.offset;
 
-            Debug.Log(new string(br.ReadChars(lump.length)));
+            if(printentitylump)
+                Debug.Log(new string(br.ReadChars(lump.length)));
         }
 
         private void LoadTextureLump(BinaryReader br, Lump lump)
@@ -327,8 +447,8 @@ namespace SkreamingSoftware
                 vertices[i].texcoord[0].x = 1f - br.ReadSingle();
                 vertices[i].texcoord[0].y = 1f - br.ReadSingle();
                 vertices[i].texcoord[1] = new Vector2();
-                vertices[i].texcoord[1].x = br.ReadSingle();
-                vertices[i].texcoord[1].y = br.ReadSingle();
+                vertices[i].texcoord[1].x = 1f - br.ReadSingle();
+                vertices[i].texcoord[1].y = 1f - br.ReadSingle();
 
                 vertices[i].normal = new Vector3();
                 vertices[i].normal.x = br.ReadSingle();
@@ -516,9 +636,9 @@ namespace SkreamingSoftware
                 Material mat;
 
                 if(f.lmapindex >= 0 && importlightmaps)
-                    mat = new Material(Shader.Find("Legacy Shaders/Lightmapped/Diffuse"));
+                    mat = new Material(Shader.Find(lightmapshader.name));
                 else
-                    mat = new Material(Shader.Find("Diffuse"));
+                    mat = new Material(Shader.Find(nonlightmapshader.name));
 
                 if(importtextures)
                     mat.mainTexture = texinfo[f.texture].texture;
@@ -532,7 +652,11 @@ namespace SkreamingSoftware
                 go.GetComponent<MeshRenderer>().material = mat;
 
                 if(addcolliders)
-                    go.AddComponent<MeshCollider>();
+                {
+                    MeshCollider mc = go.AddComponent<MeshCollider>();
+
+                    mc.material = pmat;
+                }
             }
         }
 
@@ -665,9 +789,9 @@ namespace SkreamingSoftware
             Material mat;
 
             if(f.lmapindex >= 0 && importlightmaps)
-                mat = new Material(Shader.Find("Legacy Shaders/Lightmapped/Diffuse"));
+                mat = new Material(Shader.Find(lightmapshader.name));
             else
-                mat = new Material(Shader.Find("Diffuse"));
+                mat = new Material(Shader.Find(nonlightmapshader.name));
 
             if(importtextures)
                 mat.mainTexture = texinfo[f.texture].texture;
@@ -681,7 +805,11 @@ namespace SkreamingSoftware
             go.GetComponent<MeshRenderer>().material = mat;
 
             if(addcolliders)
-                go.AddComponent<MeshCollider>();
+            {
+                MeshCollider mc = go.AddComponent<MeshCollider>();
+
+                mc.material = pmat;
+            }
         }
         
         void CreateBillboardObject(Face f, GameObject top)
@@ -697,7 +825,7 @@ namespace SkreamingSoftware
 
             Mesh mesh = new Mesh();
 
-            int offset = f.vertex;
+            //int offset = f.vertex;
 
             List<Vector3> v3l = new List<Vector3>();
             List<Vector2> v2t = new List<Vector2>();
